@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Add Supply</title>
+        <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+        <script language="Javascript">
+
+</script>
+    </head>
+    <body>
+
+
+        <form action="/addSupply" method= "post" >
+            Supply type: <input type="text" name="supply_name"
+            value="">
+
+            {% if errors and errors['supply_name'] %}
+                {{ errors['supply_name'] }}
+            {% endif %}
+
+            <br>
+            Supply brand: <input type="text" name="supply_brand"
+            value="">
+            {% if errors and errors['supply_brand'] %}
+                {{ errors['supply_brand'] }}
+            {% endif %}
+
+            <select name="supply_type">
+                {% for supply_type in supply_types %}
+                    <option value="{{ supply_type[0] }}">{{ supply_type[1]}}</option>
+                {% endfor %}
+            </select>
+            <!--{% if errors and errors['supply_type'] %}
+                {{ errors['supply_type'] }}
+            {% endif %}-->
+
+            <input type="radio" name="in_stock" value="I"> In Stock
+            <input type="radio" name="in_stock" value="O" checked="checked" > Out of Stock
+            <!--{% if errors and errors['in_stock'] %}
+                {{ errors['in_stock'] }}
+            {% endif %}-->
+
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+</html>
